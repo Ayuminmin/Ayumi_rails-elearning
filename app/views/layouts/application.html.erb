@@ -16,6 +16,7 @@
       <%= yield %>
       
     </div>
+    <%= debug session[:user_id] if session[:user_id] %>
     <%= render "shared/footer" %>
   </body>
 </html>
