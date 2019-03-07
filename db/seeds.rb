@@ -13,3 +13,11 @@ User.create(
         password: 'password'
     )
 end
+
+
+users = User.all
+user = users.first
+following = users[5..45]
+followers = users[3..33]
+following.each { |followed| user.follow(followed)}
+followers.each { |follower| follower.follow(user)}

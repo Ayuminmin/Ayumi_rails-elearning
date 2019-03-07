@@ -1,0 +1,32 @@
+<div class="jumbotron">
+
+    <div class="card" style="width: 18rem;">
+        <div class="align-self-center mt-3">
+            <%= gravatar_for @user, size: 120 %>
+        </div>
+        <div class="card-body">
+            <h1 class="card-title text-center"><%= @user.name %></h1>
+            <div class="row text-center">
+                <div class="col">
+                    <h4><%= @user.following.count %></h4>
+                    <small>following</small>
+                </div>
+                <div class="col">
+                    <h4><%= @user.followers.count %></h4>
+                    <small>followers</small>
+                </div>
+            </div>
+
+            <div class="text-center mt-3">
+                <% unless current_user == @user %>
+                    <% if current_user.following?(@user) %>
+                        <%= render 'unfollow' %>
+                    <% else %>
+                        <%= render 'follow' %>
+                    <% end %>
+                <% end %>
+            </div>
+        </div>
+    </div>  
+</div>
+
