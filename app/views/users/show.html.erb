@@ -1,5 +1,4 @@
 <div class="jumbotron">
-
     <div class="card" style="width: 18rem;">
         <div class="align-self-center mt-3">
             <%= gravatar_for @user, size: 120 %>
@@ -16,7 +15,6 @@
                     <small>followers</small>
                 </div>
             </div>
-
             <div class="text-center mt-3">
                 <% unless current_user == @user %>
                     <% if current_user.following?(@user) %>
