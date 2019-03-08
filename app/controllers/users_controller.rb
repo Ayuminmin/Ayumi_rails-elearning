@@ -34,6 +34,10 @@ class UsersController < ApplicationController
       render 'edit'
     end
   end
+  def dashboad
+  end
+  def lessoned_words
+  end
 
 
   private
