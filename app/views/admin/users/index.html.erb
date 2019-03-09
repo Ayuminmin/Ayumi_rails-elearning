@@ -10,14 +10,8 @@
                 <div class="media-body">
                     <h5><%= link_to user.name,user_path(user) %></h5>
                 </div>
-                <% unless current_user == @user %>
-                    <% if user.admin? %>
-                        <%= link_to "Remove as Admin", admin_user_path(user), method: :patch, class: 'btn btn-outline-danger',
-                            data: { confirm: "Are you sure?" } %>
-                    <% else %>
-                        <%= link_to "Set as Admin", admin_user_path(user), method: :put, class: 'btn btn-outline-primary',
-                            data: { confirm: "Are you sure?" } %>
-                    <% end %>
+                <% unless current_user == user %>
+                        <%= helper_method(user) %>
                 <% end %>
             </div>
         </div>
@@ -29,7 +23,5 @@
 </div> 
 
 
-<%# <%= form_for current_user.active_relationships.find_by(followed_id: @user),
-                html: {method: :delete } do |f| %>
-    <%# <%= f.submit "Unfollow", class: 'btn btn-danger' %>
-<%# <% end %> %> %> %>
+
+
