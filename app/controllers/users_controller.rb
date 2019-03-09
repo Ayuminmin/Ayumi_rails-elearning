@@ -39,7 +39,6 @@ class UsersController < ApplicationController
   def lessoned_words
   end
 
-
   private
   def user_params
     params.require(:user).permit(:name,:email, :password, :password_confirmation)
@@ -50,4 +49,5 @@ class UsersController < ApplicationController
       redirect_to login_url
     end
   end
+
 end

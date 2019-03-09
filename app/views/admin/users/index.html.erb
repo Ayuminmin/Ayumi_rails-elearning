@@ -1,8 +1,8 @@
-<h1 class="text-center p-4 mb-3">Users</h1>
+<h1 class="text-center p-4 mb-3">User List</h1>
 
 <div class="row">
     <% @users.each do |user| %>
-        <div class="col-lg-6 mb-3">
+        <div class="col-lg-12 mb-3">
             <div class="media">
                 <div class="mr-3 border">
                     <%= link_to gravatar_for(user) %>  
@@ -10,6 +10,9 @@
                 <div class="media-body">
                     <h5><%= link_to user.name,user_path(user) %></h5>
                 </div>
+                <% unless current_user == user %>
+                        <%= helper_method(user) %>
+                <% end %>
             </div>
         </div>
     <% end %>
@@ -17,4 +20,8 @@
 
 <div class="pagenate text-center border-top pt-3">
     <%= will_paginate %>
-</div>              
+</div> 
+
+
+
+
