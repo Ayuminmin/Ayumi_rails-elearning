@@ -5,12 +5,11 @@ module UsersHelper
     gravatar_url = "https://secure.gravatar.com/avatar/#{gravatar_id}?size=#{image_size}"
     image_tag(gravatar_url, alt: user.name)
   end 
-  def helper_method(user)
-    # @user = User.find(params[:id])
+  def admin(user)
     if user.admin?
       button_to 'Remove as Admin', admin_user_url(user), method: :patch, class: "btn"
     else
-      link_to 'Set as Admin', admin_user_url(user), method: :put, class: "btn"
+      link_to 'Set as Admin', admin_user_url(user), method: :patch, class: "btn"
     end 
   end
 end
