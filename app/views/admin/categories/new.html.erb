@@ -3,7 +3,7 @@
         <h1>Add Category</h1>
         <hr />
         <%= form_for @category, url: admin_categories_path do |f| %>
-            <%= render 'errors_messages' %>
+            <%= render 'shared/errors_messages', object: f.object  %>
                 <div class="form-group">
                     <%= f.label :title %>
                     <%= f.text_field :title, class: 'form-control' %>

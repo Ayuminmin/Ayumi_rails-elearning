@@ -2,11 +2,13 @@ class Admin::CategoriesController < AdminController
   def index
     @categories = Category.all.order(created_at: :desc)
   end
+
   def new
     @category = Category.new
   end
+
   def create
-  @category = Category.new(category_params)
+    @category = Category.new(category_params)
     if @category.save
       flash[:success] = "Successfully Add Category"
       redirect_to admin_categories_url
@@ -14,9 +16,11 @@ class Admin::CategoriesController < AdminController
       render 'new'
     end
   end
+
   def edit
     @category = Category.find(params[:id])
   end
+
   def update
     @category = Category.find(params[:id])
     if @category.update_attributes(category_params)
@@ -26,6 +30,7 @@ class Admin::CategoriesController < AdminController
       render 'edit'
     end
   end
+  
   def destroy
     category = Category.find(params[:id])
     category.destroy
