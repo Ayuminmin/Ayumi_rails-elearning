@@ -1,0 +1,33 @@
+<h1 class="text-center p-4 mb-3">Categories</h1>
+<%= link_to "Add Category",new_admin_category_path, class: 'btn btn-info mb-2' %>
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Titile</th>
+            <th scope="col">Description</th>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @categories.each do |category| %> 
+        <tr>
+            <th>
+                <%= category.title %>
+            </th>
+            <th>
+                <%= category.description %> 
+            </th>
+            <th>
+                <%= link_to "Add Word", "#", class: 'btn btn-dark' %>
+                <%= link_to "Edit", edit_admin_category_path(category), class: 'btn btn-dark' %>
+                <%= link_to "Delete", admin_category_path(category),method: :delete, class: 'btn btn-dark' %>
+            </th>
+        </tr>
+        <% end %>
+  </tbody>
+</table>
+
+
+
+
+

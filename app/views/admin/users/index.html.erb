@@ -11,7 +11,7 @@
                     <h5><%= link_to user.name,user_path(user) %></h5>
                 </div>
                 <% unless current_user == user %>
-                        <%= helper_method(user) %>
+                        <%= admin(user) %>
                 <% end %>
             </div>
         </div>
@@ -21,7 +21,3 @@
 <div class="pagenate text-center border-top pt-3">
     <%= will_paginate %>
 </div> 
-
-
-
-

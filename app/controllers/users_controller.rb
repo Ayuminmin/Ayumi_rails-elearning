@@ -5,9 +5,9 @@ class UsersController < ApplicationController
   def new
     @user = User.new
   end
+
   def create
     @user = User.new(user_params)
-
     if @user.save
       flash[:success] = "Successfully sign up"
       redirect_to root_url
@@ -15,15 +15,19 @@ class UsersController < ApplicationController
       render 'new'
     end
   end
+
   def index
     @users = User.paginate(page: params[:page], per_page: 10)
   end
+
   def show
     @user = User.find(params[:id])
   end
+
   def edit
     @user = User.find(params[:id])
   end
+
   def update
     @user = User.find(params[:id])
 
@@ -34,15 +38,19 @@ class UsersController < ApplicationController
       render 'edit'
     end
   end
+
   def dashboard
   end
+
   def lessoned_words
   end
 
   private
+  
   def user_params
     params.require(:user).permit(:name,:email, :password, :password_confirmation)
   end
+
   def require_login
     unless logged_in?
       flash[:danger] = "Unauthorizes Access! Please login..."
