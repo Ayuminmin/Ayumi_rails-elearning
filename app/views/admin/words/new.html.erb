@@ -1,26 +1,32 @@
 <h1 class="text-center p-4 mb-3">Add Word</h1>
 <hr />
-<%= form_for @word, url: admin_words_path do |f| %>
-    <div class="form-row">
+<%= form_for [:admin, :category, @word] do |f| %> 
         <div class="col">
-            <%= render 'shared/errors_messages', object: f.object %> 
+            <%= render 'shared/errors_messages', object: f.object  %>
             <div class="form-group">
                 <%= f.label :Word %>
                 <%= f.text_field :content, class: 'form-control' %>
             </div>
         </div>
-        <div class="col">
-            <div class="form-group">
-                <%= f.label :Choices %>
-                <%= f.text_field :content, class: 'form-control' %>
+        <div class="form-row">
+            <div class="col">
+                <%= f.fields_for :choices do |c| %>
+                    <div class="form-row mb-3">
+                        <%= c.label :Choices %>
+                        <%= c.text_field :content, class: 'form-control' %>
+                    </div>
+                <% end %> 
             </div>
-            <div class="form-group">
-                <%= f.text_field :content, class: 'form-control' %>
+                <div class="col m-5">
+                    <%= f.fields_for :choices do |cc| %>
+                        <div class="checkbox m-4">
+                            <%= cc.label :correct %>
+                            <%= cc.check_box :correct, type: "checkbox" %>
+                        </div>
+                    <% end %>
+                </div>
             </div>
-            <div class="form-group">
-                <%= f.text_field :content, class: 'form-control' %>
-            </div>
-            <%= f.submit "Add category", class: 'btn btn-info btn-block' %>
+            <%= f.submit "Save", class: 'btn btn-info btn-block' %>
         </div>
     </div>
 <% end %>
