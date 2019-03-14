@@ -7,7 +7,9 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :users, only: [:index,:update]
-    resources :categories
+    resources :categories do
+      resources :words 
+    end
   end
   
   resources :users

@@ -1,0 +1,40 @@
+<h1 class="text-center p-4 mb-3">Edit Word</h1>
+<hr />
+<%= form_for [:admin, @category, @word] do |f| %> 
+    <div class="col">
+        <%= render 'shared/errors_messages', object: f.object  %>
+            <div class="form-group">
+                <%= f.label :Word %>
+                <%= f.text_field :content, class: 'form-control' %>
+            </div>
+    </div>
+    <div class="form-row">
+        <div class="col">
+            <%= f.fields_for :choices do |c| %>
+                <div class="form-row mb-3">
+                    <%= c.label :Choices %>
+                    <%= c.text_field :content, class: 'form-control' %>
+                </div>
+            <% end %> 
+            </div>
+            <div class="col m-5">
+                <div class="form-check m-4">
+                    <input class="form-check-input position-static mr-2" type="radio" name="blankRadio" id="blankRadio1" value="option1" aria-label="...">correct
+                </div>
+                <div class="form-check m-4">
+                    <input class="form-check-input position-static mr-2" type="radio" name="blankRadio" id="blankRadio1" value="option1" aria-label="...">correct
+                </div>
+                <div class="form-check m-4">
+                    <input class="form-check-input position-static mr-2" type="radio" name="blankRadio" id="blankRadio1" value="option1" aria-label="...">correct
+                </div>
+            </div>
+        </div>
+        <%= f.submit "Update", class: 'btn btn-info btn-block' %>
+        </div>
+    </div>
+<% end %>
+
+
+
+
+

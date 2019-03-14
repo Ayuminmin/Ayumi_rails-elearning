@@ -12,13 +12,12 @@
         <% @categories.each do |category| %> 
         <tr>
             <th>
-                <%= category.title %>
+                <%= link_to category.title, admin_category_words_path(category) %>
             </th>
             <th>
                 <%= category.description %> 
             </th>
             <th>
-                <%= link_to "Add Word", "#", class: 'btn btn-dark' %>
                 <%= link_to "Edit", edit_admin_category_path(category), class: 'btn btn-dark' %>
                 <%= link_to "Delete", admin_category_path(category),method: :delete, class: 'btn btn-dark' %>
             </th>
