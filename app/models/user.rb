@@ -1,4 +1,8 @@
 class User < ApplicationRecord
+    has_many :lessons, dependent: :destroy
+    # accepts_nested_attributes_for :lessons
+    has_many :categories, through: :lessons
+    
     validates :name, presence: true, 
         length: {minimum: 3, maximum: 20}
 
