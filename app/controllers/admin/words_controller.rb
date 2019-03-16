@@ -45,7 +45,7 @@ class Admin::WordsController < AdminController
     word = Word.find(params[:id])
     word.destroy
     flash[:warning] = "Deleted word: #{word.content}"
-    redirect_to @words
+    redirect_to admin_category_words_path
   end
 
   private
