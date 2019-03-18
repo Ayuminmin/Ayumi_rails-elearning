@@ -1,0 +1,19 @@
+<div class="row">
+    <div class="col-lg-6 offset-4 mt-4">
+        <%= @category.title %>
+        <hr />
+        <div class="card text-center d-inline-block" style="width: 18rem;">
+            <div class="card-body">
+                <%= @words.first.content %>
+                <%= form_for [@lesson, @answer] do |f| %>
+                    <%= hidden_field_tag :lesson_id, @lesson.id %>
+                    <%= hidden_field_tag :word_id, @words.first.id %>
+                    <% @words.first.choices.each do |choice| %>
+                        <%= hidden_field_tag :choice_id, choice.id %>
+                        <%= f.submit choice.content, class: 'btn btn-info' %>
+                    <% end %>
+                <% end %>
+            </div>
+        </div>
+    </div>
+</div>
