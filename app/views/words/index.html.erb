@@ -1,0 +1,91 @@
+<div class="row">
+    <div class="col-lg-3 mt-4">
+        <div class="card d-inline-block" style="width: 18rem;">
+            <div class="text-center mt-3">
+                <%= gravatar_for current_user, size: 120 %>
+            </div>
+            <div class="card-body">
+                <h1 class="card-title text-center"><%= @user.name %></h1>
+                <div class="row text-center">
+                    <div class="col">
+                        <h4><%= @user.following.count %></h4>
+                        <small>following</small>
+                    </div>
+                    <div class="col">
+                        <h4><%= @user.followers.count %></h4>
+                        <small>followers</small>
+                    </div>
+                </div>
+                <div class="text-center mt-3">
+                    <% unless current_user == @user %>
+                        <% if current_user.following?(@user) %>
+                            <%= render 'unfollow' %>
+                        <% else %>
+                            <%= render 'follow' %>
+                        <% end %>
+                    <% end %>
+                </div>
+            </div>
+            <hr />
+            <div class="text-center">
+                Lessoned Categories
+                <%= @lessons.count %>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6 offset-1">
+        <div class="card" style="width: 50rem;">
+            <div class="card-header">
+                <div class="container m-3">
+                    <p class="text-center mt-4">Lessoned Words</p>
+                </div>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                     <div class="dropdown">
+                        <small class="mr-2">Categories</small>
+                        <%= link_to "Dashbord",dashboard_path, class: 'float-right mt-2' %>
+                        <button class="btn btn-secondary dropdown-toggle d-inline-block" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            All
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                            <button class="dropdown-item" type="button">#####</button>
+                            <button class="dropdown-item" type="button">#####</button>
+                            <button class="dropdown-item" type="button">#####</button>
+                        </div>
+                    </div>
+                </li>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Word</th>
+                            <th>CorrectAnswer</th>
+                            <th>Answer</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% @lessons.each do |lesson| %>
+                            <% lesson.answers.each do |ans| %>
+                                <tr>
+                                    <td><%= ans.word.content %></td>
+                                    <td><%= ans.word.choices.where(correct: true).first.content %></td>
+                                    <td><%= ans.choice.content %></td>
+                                    <td>
+                                        <% if ans.word.choices.find_by(correct: true).content == ans.choice.content %>
+                                            <i class="fas fa-check"></i>
+                                        <% else %>
+                                            <i class="fas fa-times"></i>
+                                        <% end %>
+                                    </td>
+                                </tr>
+                            <% end %>
+                        <% end %>
+                    </tbody>
+                </table>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
