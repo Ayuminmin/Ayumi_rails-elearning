@@ -6,7 +6,7 @@ class AnswersController < ApplicationController
     @category = Category.find(@lesson.category_id)
     @words = (@category.words - @lesson.words)
     if @words.size == 0
-      redirect_to lesson_answers_url
+      redirect_to lesson_url(@lesson)
     end
   end
 

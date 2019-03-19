@@ -6,5 +6,5 @@ class Choice < ApplicationRecord
   # has_many :words, through: :answers
 
   validates :content, presence: :true,
-              length: {minium: 2, maximum: 20}    
+              length: {maximum: 20}    
 end

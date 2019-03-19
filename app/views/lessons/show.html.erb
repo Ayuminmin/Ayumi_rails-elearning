@@ -1,0 +1,37 @@
+ <div class="cantainer">   
+    <div class="row">
+        <div class="col-lg-6 offset-2 mt-4">
+            <div class="card" style="width: 40rem;">
+                <div class="card-header">
+                    <%= @lesson.category.title %>
+                </div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Word</th>
+                            <th>CorrectAnswer</th>
+                            <th>Answer</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% @lesson.answers.each do |ans| %>
+                            <tr>
+                                <td><%= ans.word.content %></td>
+                                <td><%= ans.word.choices.where(correct: true).first.content %></td>
+                                <td><%= ans.choice.content %></td>
+                                <td>
+                                    <% if ans.word.choices.find_by(correct: true).content == ans.choice.content %>
+                                        <i class="fas fa-check"></i>
+                                    <% else %>
+                                        <i class="fas fa-times"></i>
+                                    <% end %>
+                                </td>
+                            </tr>
+                        <% end %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
