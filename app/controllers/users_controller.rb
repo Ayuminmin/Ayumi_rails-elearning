@@ -42,9 +42,6 @@ class UsersController < ApplicationController
   def dashboard
   end
 
-  def lessoned_words
-  end
-
   private
   
   def user_params
