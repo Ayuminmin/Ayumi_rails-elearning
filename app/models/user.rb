@@ -1,7 +1,7 @@
 class User < ApplicationRecord
     has_many :lessons, dependent: :destroy
-    # accepts_nested_attributes_for :lessons
     has_many :categories, through: :lessons
+    has_many :activities, dependent: :destroy
     
     validates :name, presence: true, 
         length: {minimum: 3, maximum: 20}
@@ -29,10 +29,17 @@ class User < ApplicationRecord
       following << other_user
     end
     def unfollow(other_user)
-      following.delete(other_user)
+      # following.delete(other_user)
+      active_relationships.find_by(followed_id: other_user).destroy
     end
     def following?(other_user)
       following.include?(other_user)
+    end
+
+    def feed
+      following_ids = "SELECT followed_id FROM relationships WHERE follower_id = :user_id"
+      Activity.where("user_id IN (#{following_ids}) OR user_id = :user_id", user_id: id,
+      following_ids: following_ids, id: id)
     end
 
 end

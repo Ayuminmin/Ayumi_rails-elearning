@@ -22,6 +22,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @lessons = Lesson.where(user_id: @user.id)
+    @activities = @user.activities.order(created_at: :desc).paginate(page: params[:page], per_page: 5)
   end
 
   def edit
@@ -30,7 +32,6 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-
     if @user.update_attributes(user_params)
       flash[:success] = "Successfully Update!"
       redirect_to user_path(@user)
@@ -40,6 +41,24 @@ class UsersController < ApplicationController
   end
 
   def dashboard
+    @user = User.find(current_user.id)
+    @lessons = Lesson.where(user_id: @user.id)
+    @follow_users  = @user.following
+    
+      # @follow_users.each do |follow_user|
+      #   @activities = follow_user.activities
+     
+      # end
+      
+
+
+      
+    @activities = current_user.feed
+
+
+  # @user_lesson = Lesson.where(user_id: current_user.id)
+  # @learned = @user_lesson.collect{ |n| n.category}
+    
   end
 
   private
