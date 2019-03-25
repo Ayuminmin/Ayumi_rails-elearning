@@ -44,15 +44,15 @@
                 <li class="media">
                     <div class="media-body">
                     <h5 class="mt-0 mb-1"></h5>
-                    <ul> 
+                    <ul class="list-unstyled"> 
                         <% @activities.each do |activity| %>
                             <li class="m-3">
+                            <%= gravatar_for activity.user, size: 80 %>
                                 <% if activity.action_type == "Relationship" %>
-                                    <% @name = activity.action.follower.name %>
-                                    <%= "#{ @name } followed" %>
+                                    <%= "#{ activity.action.follower.name } followed" %>
                                     <%= link_to activity.action.followed.name, user_path(activity.action.followed) %>
                                 <% else %>
-                                    <%= "#{ @name } learned" %>
+                                    <%= "#{ activity.action.user.name } learned" %>
                                     <%= link_to activity.action.category.title, lesson_path(activity.action.category) %>
                                 <% end %>
                             </li>
@@ -60,6 +60,9 @@
                     </ul>
                     </div>
                 </li>
+                <div class="card-footer paginate text-center">
+                    <%= will_paginate @activities if @activities.any? %>
+                </div>
             </ul>
         </div>
     </div>

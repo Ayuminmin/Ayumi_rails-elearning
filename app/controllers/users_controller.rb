@@ -17,7 +17,7 @@ class UsersController < ApplicationController
   end
 
   def index
-    @users = User.paginate(page: params[:page], per_page: 10)
+    @users = User.paginate(page: params[:page], per_page: 10).search(params[:search])
   end
 
   def show
@@ -44,21 +44,7 @@ class UsersController < ApplicationController
     @user = User.find(current_user.id)
     @lessons = Lesson.where(user_id: @user.id)
     @follow_users  = @user.following
-    
-      # @follow_users.each do |follow_user|
-      #   @activities = follow_user.activities
-     
-      # end
-      
-
-
-      
-    @activities = current_user.feed
-
-
-  # @user_lesson = Lesson.where(user_id: current_user.id)
-  # @learned = @user_lesson.collect{ |n| n.category}
-    
+    @activities = current_user.feed.order(created_at: :desc).paginate(page: params[:page], per_page: 5)
   end
 
   private

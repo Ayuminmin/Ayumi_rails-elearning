@@ -42,4 +42,9 @@ class User < ApplicationRecord
       following_ids: following_ids, id: id)
     end
 
+    def self.search(search)
+      User.all unless search
+      User.where(['name LIKE ?', "%#{search}%"])
+    end
+
 end

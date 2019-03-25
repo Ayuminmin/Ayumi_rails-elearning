@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container">
-        <%= link_to "E-learning", root_path, class: 'naver-link' %>
+        <%= link_to "E-learning", root_path, class: 'naver-link text-dark' %>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -29,8 +29,8 @@
                             <%= link_to "Profile", user_path(current_user), class: 'dropdown-item' %>
                             <%= link_to "Setting", edit_user_path(current_user), class: 'dropdown-item' %>
                             <%= link_to "Logout", logout_path, method: :delete, class: 'dropdown-item' %>
-                            <hr />
                             <% if current_user.admin? %>
+                                <hr />
                                 <%= link_to "User Management", admin_users_path, class: 'dropdown-item'%>
                                 <%= link_to "Category Manegement", admin_categories_path, class: 'dropdown-item' %>
                             <% end %>

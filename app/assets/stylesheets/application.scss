@@ -1,1 +1,11 @@
 @import "bootstrap";
+
+body{
+    background: image-url('flower.jpg');
+    background-size: cover;
+    font-family: 'Indie Flower', cursive;
+}
+
+.static_page{
+    height: 800px;
+}
