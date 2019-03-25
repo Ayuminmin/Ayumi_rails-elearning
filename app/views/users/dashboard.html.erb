@@ -49,11 +49,19 @@
                             <li class="m-3">
                             <%= gravatar_for activity.user, size: 80 %>
                                 <% if activity.action_type == "Relationship" %>
-                                    <%= "#{ activity.action.follower.name } followed" %>
-                                    <%= link_to activity.action.followed.name, user_path(activity.action.followed) %>
+                                    <% if activity.action.follower.id == current_user.id %>
+                                        <%= "You followed"%>
+                                    <% else %>
+                                        <%= "#{ activity.action.follower.name } followed" %>
+                                    <% end %>
+                                     <%= link_to activity.action.followed.name, user_path(activity.action.followed) %>
                                 <% else %>
-                                    <%= "#{ activity.action.user.name } learned" %>
-                                    <%= link_to activity.action.category.title, lesson_path(activity.action.category) %>
+                                    <% if activity.action.user.id == current_user.id %>
+                                        <%= "You learned" %>
+                                    <% else %>
+                                        <%= "#{ activity.action.user.name } learned" %>
+                                    <% end %>
+                                        <%= link_to activity.action.category.title, lesson_path(activity.action.category) %>
                                 <% end %>
                             </li>
                         <% end %>
