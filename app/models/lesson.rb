@@ -1,5 +1,5 @@
 class Lesson < ApplicationRecord
-	belongs_to :user
+  belongs_to :user
 	belongs_to :category
 
 	has_many :answers, dependent: :destroy
@@ -8,6 +8,6 @@ class Lesson < ApplicationRecord
 
 	has_one :activity, as: :action, dependent: :destroy
 
-	accepts_nested_attributes_for :answers
+  accepts_nested_attributes_for :answers
 
 end

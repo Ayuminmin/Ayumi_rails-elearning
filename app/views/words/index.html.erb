@@ -2,7 +2,7 @@
     <div class="col-lg-3 mt-4">
         <div class="card d-inline-block" style="width: 18rem;">
             <div class="text-center mt-3">
-                <%= gravatar_for current_user, size: 120 %>
+                <%= gravatar_for @user, size: 120 %>
             </div>
             <div class="card-body">
                 <h1 class="card-title text-center"><%= @user.name %></h1>
@@ -16,20 +16,11 @@
                         <small>followers</small>
                     </div>
                 </div>
-                <div class="text-center mt-3">
-                    <% unless current_user == @user %>
-                        <% if current_user.following?(@user) %>
-                            <%= render 'unfollow' %>
-                        <% else %>
-                            <%= render 'follow' %>
-                        <% end %>
-                    <% end %>
-                </div>
             </div>
             <hr />
             <div class="text-center">
                 Lessoned Categories
-                <%= @lessons.count %>
+                <h3><%= link_to @user.categories.count, user_words_path(@user), style: 'color:pink;'%></h3>
             </div>
         </div>
     </div>
@@ -40,50 +31,56 @@
                     <p class="text-center mt-4">Lessoned Words</p>
                 </div>
             </div>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">
-                     <div class="dropdown">
-                        <small class="mr-2">Categories</small>
-                        <%= link_to "Dashbord",dashboard_path, class: 'float-right mt-2' %>
-                        <button class="btn btn-secondary dropdown-toggle d-inline-block" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            All
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                            <button class="dropdown-item" type="button">#####</button>
-                            <button class="dropdown-item" type="button">#####</button>
-                            <button class="dropdown-item" type="button">#####</button>
+            <% if @user.categories.count == 0 %>
+                <h3 class= "text-center mt-3 text-muted">Let's try lesssons !</h3>
+            <% else %>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <div class="dropdown">
+                            <small class="mr-2">Categories</small>
+                            <%= link_to "Dashbord",dashboard_path, class: 'float-right mt-2', style: 'color:pink;' %>
+                            <div class="form-group">
+                                <%= form_tag(user_words_path, method: :get) do %>
+                                    <h4><%= select_tag :title, options_from_collection_for_select(@categories, 'id', 'title', params[:title]),
+                                        include_blank: 'All',
+                                        onchange: 'this.form.submit()',
+                                        class: 'mt-2' %></h4>
+                                <% end %>
+                            </div>
                         </div>
-                    </div>
-                </li>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Word</th>
-                            <th>CorrectAnswer</th>
-                            <th>Answer</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <% @lessons.each do |lesson| %>
-                            <% lesson.answers.each do |ans| %>
-                                <tr>
-                                    <td><%= ans.word.content %></td>
-                                    <td><%= ans.word.choices.where(correct: true).first.content %></td>
-                                    <td><%= ans.choice.content %></td>
-                                    <td>
-                                        <% if ans.word.choices.find_by(correct: true).content == ans.choice.content %>
-                                            <i class="fas fa-check"></i>
-                                        <% else %>
-                                            <i class="fas fa-times"></i>
-                                        <% end %>
-                                    </td>
-                                </tr>
+                    </li>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Word</th>
+                                <th>CorrectAnswer</th>
+                                <th>Answer</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% if !@answers.blank? %>
+                                <% @answers.each do |answer| %>
+                                    <tr>
+                                        <td><%= answer.word.content %></td>
+                                        <td><%= answer.word.choices.where(correct: true).first.content %></td>
+                                        <td><%= answer.choice.content %></td>
+                                        <td>
+                                            <% if answer.word.choices.find_by(correct: true).content == answer.choice.content %>
+                                                <i class="fas fa-check"></i>
+                                            <% else %>
+                                                <i class="fas fa-times"></i>
+                                            <% end %>
+                                        </td>
+                                    </tr>
+                                <% end %>
+                            <% else %>
+                                <h3 class="text-light d-block mx-auto">Let's try lesson !</h3>
                             <% end %>
-                        <% end %>
-                    </tbody>
-                </table>
-            </ul>
+                        </tbody>
+                    </table>
+                </ul>
+            <% end %>
         </div>
     </div>
 </div>

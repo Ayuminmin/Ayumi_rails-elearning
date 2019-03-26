@@ -5,6 +5,9 @@
                 <div class="card-header">
                     <%= @lesson.category.title %>
                 </div>
+                <div>
+                    <h3 class="text-center">Result <%= @lesson.choices.where(correct: true).count %>/<%= @lesson.choices.count %></h3>
+                </div>
                 <table class="table">
                     <thead>
                         <tr>

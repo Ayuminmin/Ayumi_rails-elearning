@@ -29,7 +29,7 @@
             <hr />
             <div class="text-center">
                 Lessoned Categories
-                <%= @lessons.count %>
+                <h3><%= link_to @lessons.count, user_words_path(@user), style: 'color:pink;'%></h3>
             </div>
         </div>
     </div>
@@ -54,14 +54,14 @@
                                     <% else %>
                                         <%= "#{ activity.action.follower.name } followed" %>
                                     <% end %>
-                                     <%= link_to activity.action.followed.name, user_path(activity.action.followed) %>
+                                     <%= link_to activity.action.followed.name, user_path(activity.action.followed), style: 'color:pink;' %>
                                 <% else %>
                                     <% if activity.action.user.id == current_user.id %>
                                         <%= "You learned" %>
                                     <% else %>
                                         <%= "#{ activity.action.user.name } learned" %>
                                     <% end %>
-                                        <%= link_to activity.action.category.title, lesson_path(activity.action.category) %>
+                                        <%= link_to activity.action.category.title, lesson_path(activity.action.category), style: 'color:pink;' %>
                                 <% end %>
                             </li>
                         <% end %>
