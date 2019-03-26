@@ -5,25 +5,24 @@
         <%= submit_tag 'Search', class: 'btn btn-outline-light my-2 my-sm-0' %>
     <% end %>
 </div>
-<div class="row">
+<div class="row mt-3">
     <% if !@users.empty? %>
         <% @users.each do |user| %>
             <div class="col-lg-6 mb-3">
-                <div class="media">
+                <div class="media bg-light w-75">
                     <div class="mr-3 border">
                         <%= link_to gravatar_for(user) %>  
                     </div> 
-                    <div class="media-body">
-                        <h5><%= link_to user.name,user_path(user) %></h5>
+                    <div class="media-body mt-2">
+                        <h5><%= link_to user.name, user_path(user), style: 'color:pink;' %></h5>
                     </div>
                 </div>
             </div>
         <% end %>
     <% else %>
-    <h3 class="d-block mx-auto text-light">No one found !</h3>
+        <h3 class="d-block mx-auto text-light">No one found !</h3>
     <% end %>
 </div>
-
 <div class="pagenate text-center border-top pt-3">
     <%= will_paginate %>
 </div>              
