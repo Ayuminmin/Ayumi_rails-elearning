@@ -1,35 +1,35 @@
 <div class="row">
     <div class="col-lg-3 mt-4">
-        <div class="card d-inline-block" style="width: 18rem;">
-            <div class="text-center mt-3">
+        <div class="card d-inline-block rounded-pill" style="width: 18rem;">
+            <div class="text-center mt-5">
                 <%= gravatar_for @user, size: 120 %>
             </div>
             <div class="card-body">
                 <h1 class="card-title text-center"><%= @user.name %></h1>
                 <div class="row text-center">
                     <div class="col">
-                        <h4><%= link_to @user.following.count, user_followings_path(@user), style: "color: pink;" %></h4>
+                        <h4><%= link_to @user.following.count, user_followings_path(@user), style: "color: violet;" %></h4>
                         <small>following</small>
                     </div>
                     <div class="col">
-                        <h4><%= link_to @user.followers.count, user_followers_path(@user), style: "color: pink;" %></h4>
+                        <h4><%= link_to @user.followers.count, user_followers_path(@user), style: "color: violet;" %></h4>
                         <small>followers</small>
                     </div>
                 </div>
-                <div class="text-center mt-3">
+                <div class="text-center mt-5">
                     <% unless current_user == @user %>
                         <% if current_user.following?(@user) %>
-                            <%= render 'unfollow' %>
+                            <%= render 'unfollow', user: @user %>
                         <% else %>
-                            <%= render 'follow' %>
+                            <%= render 'follow', user: @user %>
                         <% end %>
                     <% end %>
+                    <hr />
                 </div>
             </div>
-            <hr />
             <div class="text-center">
                 Lessoned Categories
-                <h3><%= link_to @lessons.count, user_words_path(@user), style: "color:pink;" %></h3>
+                <h3><%= link_to @lessons.count, user_words_path(@user), style: "color: violet;" %></h3>
             </div>
         </div>
     </div>
@@ -45,19 +45,26 @@
                     <div class="media-body">
                     <h5 class="mt-0 mb-1"></h5>
                     <ul class="list-unstyled">
-                        <% @activities.each do |activity| %>
-                            <li class="m-3">
-                                <%= gravatar_for @user, size: 80 %>
+                        <% if !@activities.empty? %>
+                            <% @activities.each do |activity| %>
+                                <li class="m-3">
+                                    <%= gravatar_for @user, size: 80 %>
                                     <% if activity.action_type == "Relationship" %>
-                                    <% if current_user == activity.user %>
-                                        <%= "You followed" %>
-                                        <%= link_to activity.action.followed.name, user_path(activity.action.followed), style: "color: pink;" %>
+                                        <% if current_user == activity.user %>
+                                            <%= "You followed" %>
+                                            <%= link_to activity.action.followed.name, user_path(activity.action.followed), style: "color: violet;" %>
+                                        <% end %>
+                                    <% else %>
+                                        <%= "You learned" %>
+                                        <%= link_to activity.action.category.title, lesson_path(activity.action.category), style: "color: violet;" %>
                                     <% end %>
-                                <% else %>
-                                    <%= "You learned" %>
-                                    <%= link_to activity.action.category.title, lesson_path(activity.action.category), style: "color: pink;" %>
-                                <% end %>
-                            </li>
+                                    <time datertime="<%= activity.created_at %>" class="text-muted float-right mt-4">
+                                        <small>[ <%= time_ago_in_words(activity.created_at) %> ago ]</small>
+                                    </time>
+                                </li>
+                            <% end %>
+                        <% else %>
+                            <h3 class="text-muted text-center mt-3 mb-0">Create your activity !</h3>
                         <% end %>
                     </ul>
                     </div>

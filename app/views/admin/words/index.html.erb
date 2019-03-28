@@ -1,25 +1,29 @@
-<h1 class="text-center p-4 mb-3"><%= @category.title %></h1> 
+<h1 class="text-center p-4 mb-3 text-light"><%= @category.title %></h1> 
 <%= link_to "Add Word",new_admin_category_word_path(@category), class: 'btn btn-info mb-2' %>
-<%= link_to "Back to Categories",admin_categories_path, class: 'btn btn-outline-dark mb-2 float-right'%>
 <table class="table">
     <thead class="thead-dark">
         <tr>
-            <th scope="col">Words</th>
-            <th scope="col">Answers</th>
-            <th></th>
+            <th style="width:300px;">Words</th>
+            <th style="width:600px;">Answers</th>
+            <th style="width:300px;">Action <%= link_to "Back",admin_categories_path, class: 'btn btn-light float-right'%></th>
         </tr>
     </thead>
-    <tbody>
+    <tbody class="bg-light">
     <% @words.each do |word| %> 
         <tr>
             <th>
                 <%= word.content %>
             </th>
             <th>
+                <%= word.choices.find_by(correct: true).content %>
             </th>
             <th>
-                <%= link_to "Edit", edit_admin_category_word_path(@category,word), class: 'btn btn-dark' %>
-                <%= link_to "Delete", admin_category_word_path(@category,word),method: :delete, class: 'btn btn-dark' %>
+                <%= link_to edit_admin_category_word_path(@category,word), class: 'btn btn-dark' do %>
+                    <i class="fas fa-edit"></i>
+                <% end %>
+                <%= link_to admin_category_word_path(@category,word),method: :delete, class: 'btn btn-dark' do %>
+                    <i class="fas fa-trash-alt"></i>
+                <% end %>
             </th>
         </tr>
     <% end %>

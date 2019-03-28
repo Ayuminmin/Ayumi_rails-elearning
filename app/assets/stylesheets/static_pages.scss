@@ -1,10 +1,42 @@
 // Place all the styles related to the static_pages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-.sinup_link{
-    border-radius: 50%;
-    background-color: rgb(238, 87, 112);
-    height: 30px;
-    margin: 200px;
+.heart {
+    animation: pounding .5s linear infinite alternate;
+    z-index: 1;
+    width: 200px;
+    height: 180px;
+    left: 25%;
+    display: block;
+    &::before,
+    &::after{
+    position: absolute;
+    content: "";
+    left: 100px;
+    top: 0;
+    width: 100px;
+    height: 160px;
+    background:violet;
+    border-radius: 50px 50px 0 0;
+    transform: rotate(-45deg);
+    transform-origin: 0 100%;
+  }
+    &::after {
+    left: 0;
+    transform: rotate(45deg);
+    transform-origin :100% 100%;
+  }
 }
+  @keyframes pounding{
+    0%{ transform: scale(1.5); }
+    100%{ transform: scale(1); }
+  }
 
+.signup_link{
+    z-index: 2;
+}
+.signup_link,.heart {
+    position: absolute;
+    margin: 40px;
+    margin-right: 13px;
+}
