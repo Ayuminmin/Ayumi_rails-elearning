@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get '/login', to: 'sessions#new'
   delete '/logout', to: 'sessions#destroy'
   get '/dashboard', to: 'users#dashboard'
+
   namespace :admin do
     resources :users, only: [:index,:update]
     resources :categories do

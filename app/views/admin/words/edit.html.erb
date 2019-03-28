@@ -3,36 +3,39 @@
 <%= form_for [:admin, @category, @word] do |f| %> 
     <div class="col">
         <%= render 'shared/errors_messages', object: f.object  %>
-            <div class="form-group">
+            <div class="form-group text-light">
                 <%= f.label :Word %>
                 <%= f.text_field :content, class: 'form-control' %>
             </div>
     </div>
-    <div class="form-row">
-        <div class="col">
+    <div class="form-row d-block">
+        
             <%= f.fields_for :choices do |c| %>
-                <div class="form-row mb-3">
-                    <%= c.label :Choices %>
+            <div class="form-row text-light mb-3 ml-3">
+                <div class="col text-light">
+                    <%= c.label :choices %>
                     <%= c.text_field :content, class: 'form-control' %>
                 </div>
+                <div class="col text-light mt-5 ml-5">
+                    <%= c.label :correct %>
+                    <%= c.check_box :correct, type: 'checkbox' %>
+                </div>
+            </div>
             <% end %> 
             </div>
-            <div class="col m-5">
-                <div class="form-check m-4">
-                    <input class="form-check-input position-static mr-2" type="radio" name="blankRadio" id="blankRadio1" value="option1" aria-label="...">correct
-                </div>
-                <div class="form-check m-4">
-                    <input class="form-check-input position-static mr-2" type="radio" name="blankRadio" id="blankRadio1" value="option1" aria-label="...">correct
-                </div>
-                <div class="form-check m-4">
-                    <input class="form-check-input position-static mr-2" type="radio" name="blankRadio" id="blankRadio1" value="option1" aria-label="...">correct
-                </div>
-            </div>
-        </div>
+            
         <%= f.submit "Update", class: 'btn btn-info btn-block' %>
         </div>
     </div>
 <% end %>
+
+
+       
+
+
+
+
+
 
 
 

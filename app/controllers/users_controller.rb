@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :require_login, except: [:new,:create]
+  before_action :correct_user, only: [:edit,:update]
 
   def new
     @user = User.new
@@ -9,14 +10,14 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       flash[:success] = "Successfully sign up"
-      redirect_to root_url
+      redirect_to login_url
     else
       render 'new'
     end
   end
 
   def index
-    @users = User.paginate(page: params[:page], per_page: 10).search(params[:search])
+    @users = User.paginate(page: params[:page], per_page: 8).search(params[:search])
   end
 
   def show
@@ -57,6 +58,11 @@ class UsersController < ApplicationController
       flash[:danger] = "Unauthorizes Access! Please login..."
       redirect_to login_url
     end
+  end
+
+  def correct_user
+    @user = User.find(params[:id])
+    redirect_to root_url unless @user == current_user
   end
 
 end

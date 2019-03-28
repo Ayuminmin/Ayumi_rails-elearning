@@ -1,9 +1,10 @@
 require 'faker'
 
 User.create(
-    name: 'Test User',
-    email: 'test@gmail.com',
-    password: 'password'
+    name: 'ayumi',
+    email: 'masamichiayu@gmail.com',
+    password: 'ayumiayumi',
+    admin: '1'
 )
 
 50.times do |n|
@@ -14,10 +15,9 @@ User.create(
     )
 end
 
-
 users = User.all
 user = users.first
-following = users[5..45]
-followers = users[3..33]
+following = users[5..50]
+followers = users[3..50]
 following.each { |followed| user.follow(followed)}
 followers.each { |follower| follower.follow(user)}

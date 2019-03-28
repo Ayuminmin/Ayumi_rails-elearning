@@ -9,9 +9,9 @@ module UsersHelper
 
   def admin(user)
     if user.admin?
-      button_to 'Remove as Admin', admin_user_url(user), method: :patch, class: 'btn btn-dark'
+      button_to 'Remove as Admin', admin_user_url(user), method: :patch, class: 'btn btn-info'
     else
-      button_to 'Set as Admin', admin_user_url(user), method: :patch, class: 'btn btn-outline-dark'
+      button_to 'Set as Admin', admin_user_url(user), method: :patch, class: 'btn btn-outline-info'
     end 
   end
 

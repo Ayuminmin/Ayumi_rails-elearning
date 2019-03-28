@@ -4,12 +4,12 @@
     <% if !@follow_users.blank? %>
         <% @follow_users.each do |follow_user| %>
             <div class="col-lg-6 mb-3">
-                <div clss="media bg-light w-75">
+                <div class="media bg-light w-75">
                     <div class="mr-3 border">
                         <%= link_to gravatar_for(follow_user) %>
                     </div>
-                    <div class="media-body mt-2">
-                        <h5><%= link_to follow_user.name, user_path(follow_user), style: "color: pink;" %></h5>
+                    <div class="media-body mt-2 flort-right">
+                        <h5><%= link_to follow_user.name, user_path(follow_user), style: "color: violet;" %></h5>
                     </div>
                 </div>
             </div>

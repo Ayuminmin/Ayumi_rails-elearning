@@ -1,21 +1,21 @@
 <h1 class="text-center p-4 mb-3 text-light">Add Word</h1>
 <hr />
 <%= form_for [:admin, :category, @word] do |f| %> 
-    <div class="col">
+    <div class="col text-light">
         <%= render 'shared/errors_messages', object: f.object  %>
             <div class="form-group">
                 <%= f.label :Word %>
                 <%= f.text_field :content, class: 'form-control' %>
             </div>
         </div>
-        <div class="form-row">
+        <div class="form-row d-block">
             <%= f.fields_for :choices do |c| %>
-                <div class="form-row mb-3">
-                    <div class="col">
-                        <%= c.label :Choices %>
+                <div class="form-row mb-3 ml-3">
+                    <div class="col text-light">
+                        <%= c.label :choices %>
                         <%= c.text_field :content, class: 'form-control' %>
                     </div>
-                    <div class="col">
+                    <div class="col text-light mt-5 ml-5">
                         <%= c.label :correct %>
                         <%= c.check_box :correct, type: 'checkbox' %>
                     </div>
@@ -24,7 +24,7 @@
         </div>
         <%= f.submit "Save", class: 'btn btn-info btn-block' %>
     </div>
-<% end %>
+<% end %>               
 
 
 
