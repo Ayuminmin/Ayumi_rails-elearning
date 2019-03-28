@@ -48,7 +48,7 @@ test:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
 production:
-  <<: *default
-  database: Ayumi_rails-elearning_production
-  username: Ayumi_rails-elearning
-  password: <%= ENV['AYUMI_RAILS-ELEARNING_DATABASE_PASSWORD'] %>
+  adapter: postgresql
+  database: Ayumi_rails_elearning_development_production
+  pool: 5
+  timeout: 5000

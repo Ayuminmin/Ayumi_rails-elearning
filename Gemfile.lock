@@ -135,6 +135,7 @@ GEM
     pastel (0.7.2)
       equatable (~> 0.5.0)
       tty-color (~> 0.4.0)
+    pg (1.1.4)
     popper_js (1.14.5)
     public_suffix (3.0.3)
     puma (3.12.0)
@@ -262,6 +263,7 @@ DEPENDENCIES
   jquery-rails
   listen (>= 3.0.5, < 3.2)
   mysql2 (>= 0.4.4, < 0.6.0)
+  pg
   puma (~> 3.11)
   rails (~> 5.2.2)
   sass-rails (~> 5.0)
@@ -276,7 +278,7 @@ DEPENDENCIES
   will_paginate-bootstrap4
 
 RUBY VERSION
-   ruby 2.3.7p456
+   ruby 2.6.0p0
 
 BUNDLED WITH
    2.0.1
