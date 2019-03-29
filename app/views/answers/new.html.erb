@@ -3,7 +3,7 @@
         <%= @category.title %>
         <hr />
         <div class="card text-center d-inline-block" style="width: 40rem;">
-            <div class="card-body">
+            <div class="card-body h-100">
                 <%= @words.first.content %>
                 <% @words.first.choices.each do |choice| %>
                     <%= form_for [@lesson, @answer] do |f| %>
