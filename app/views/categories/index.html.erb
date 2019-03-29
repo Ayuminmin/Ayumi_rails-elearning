@@ -39,7 +39,7 @@
                         <p class="card-text"><%= category.description %></p>
                         <% if @learned.include?(category) %>
                             <p class="text-right d-block mr-4 mb-0 text-muted">
-                                Result <%= @lesson.choices.where(correct: true).count %>/<%= @lesson.choices.count %>
+                                Result <%= category.choices.where(correct: :true).count %> /<%= category.words.count %>
                             </p>
                             <%= link_to "Show Result", lesson_path(category) ,class: 'btn btn-secondary float-right mb-1' %>
                         <% else %>
