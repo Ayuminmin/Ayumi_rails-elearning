@@ -38,14 +38,14 @@
                         <%= category.title %>
                         <p class="card-text"><%= category.description %></p>
                         <% if @learned.include?(category) %>
-                            <p class="text-right d-block mr-4 text-muted">
+                            <p class="text-right d-block mr-4 mb-0 text-muted">
                                 Result <%= @lesson.choices.where(correct: true).count %>/<%= @lesson.choices.count %>
                             </p>
-                            <%= link_to "Show Result", lesson_path(category) ,class: 'btn btn-secondary float-right' %>
+                            <%= link_to "Show Result", lesson_path(category) ,class: 'btn btn-secondary float-right mb-1' %>
                         <% else %>
                             <%= form_for @lesson do |f| %>
                             <%= hidden_field_tag :category_id, category.id %>
-                            <%= f.submit "Let's Start!", class: 'btn btn-info float-right' %>
+                            <%= f.submit "Let's Start!", class: 'btn btn-info float-right mt-4'%>
                             <% end %>
                         <% end %>
                     </div>
