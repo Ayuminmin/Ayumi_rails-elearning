@@ -4,5 +4,5 @@ class Choice < ApplicationRecord
   has_many :lessons, through: :answers
 
   validates :content, presence: :true,
-              length: {maximum: 20}    
+              length: {maximum: 50}    
 end
