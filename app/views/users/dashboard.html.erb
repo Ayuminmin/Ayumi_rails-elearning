@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-lg-3 mt-4">
-        <div class="card d-inline-block rounded-pill" style="width: 18rem;">
+        <div class="card activity d-inline-block rounded-pill" style="width: 18rem;">
             <div class="text-center mt-5">
                 <%= gravatar_for @user, size: 120 %>
             </div>
@@ -25,11 +25,11 @@
                         <% end %>
                     <% end %>
                     <hr />
+                    <div class="text-center d-block">
+                        Lessoned Categories
+                        <h3><%= link_to @lessons.count, user_words_path(@user), style: "color: violet;" %></h3>
+                    </div>
                 </div>
-            </div>
-            <div class="text-center">
-                Lessoned Categories
-                <h3><%= link_to @lessons.count, user_words_path(@user), style: 'color: violet;'%></h3>
             </div>
         </div>
     </div>
