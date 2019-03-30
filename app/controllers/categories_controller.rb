@@ -3,7 +3,9 @@ class CategoriesController < ApplicationController
   def index
     @lesson = Lesson.new
     @user_lesson = Lesson.where(user_id: current_user.id)
-    @learned = @user_lesson.collect{ |n| n.category}
+    @learneds = @user_lesson.collect{ |n| n.category}
+    @choices = @user_lesson.collect{ |n| n.choices}
+    @answers = @learneds.collect{ |n| n.answers }
     @status = params[:status] 
     if @status == "learned"
       @categories = Category.joins(:lessons).paginate(page: params[:page], per_page: 6)
