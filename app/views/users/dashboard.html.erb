@@ -62,7 +62,7 @@
                                             <% else %>
                                                 <%= "#{ activity.action.user.name } learned" %>
                                             <% end %>
-                                                <%= link_to activity.action.category.title, lesson_path(activity.action.category), style: 'color: violet;' %>
+                                                <%= link_to activity.action.category.title, lesson_path(Lesson.find_by(category_id: activity.action.category.id, user_id: activity.action.user.id)), style: 'color: violet;' %>
                                         <% end %>
                                         <time datertime="<%= activity.created_at %>" class="text-muted float-right mt-4 ml-5">
                                             <small>[ <%= time_ago_in_words(activity.created_at) %> ago ]</small>
