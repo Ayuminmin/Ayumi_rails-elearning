@@ -38,7 +38,7 @@
                         <%= category.title %>
                         <p class="card-text"><%= category.description %></p>
                         <% if @learneds.include?(category) %>
-                            <%= link_to "Show Result", lesson_path(category) ,class: 'btn btn-secondary float-right mb-1' %>
+                            <%= link_to "Show Result", lesson_path(Lesson.find_by(category_id: category.id, user_id: current_user.id)) ,class: 'btn btn-secondary float-right mb-1' %>
                         <% else %>
                             <%= form_for @lesson do |f| %>
                             <%= hidden_field_tag :category_id, category.id %>
@@ -50,7 +50,4 @@
             </div>
         <% end %>
     </div>
-    <div class="pagenate text-center border-top pt-3">
-      <%= will_paginate @categories if !@categories.blank? %>
-    </div> 
 </div> 

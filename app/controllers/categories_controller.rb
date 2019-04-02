@@ -8,11 +8,11 @@ class CategoriesController < ApplicationController
     @answers = @learneds.collect{ |n| n.answers }
     @status = params[:status] 
     if @status == "learned"
-      @categories = Category.joins(:lessons).paginate(page: params[:page], per_page: 6)
+      @categories = @learneds
     elsif @status == "unlearned"
-      @categories =  Category.includes(:lessons).where(lessons: {category_id: nil}).paginate(page: params[:page], per_page: 6)
+      @categories =  Category.all - @learneds
     else
-      @categories = Category.all.paginate(page: params[:page], per_page: 6)
+      @categories = Category.all
     end
   end
 
